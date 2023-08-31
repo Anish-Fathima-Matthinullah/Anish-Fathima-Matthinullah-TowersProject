@@ -1,6 +1,6 @@
 namespace API.Modals
 {
-    public class Activity
+    public class Header
     {
         public int Id { get; set; }
         public string? ActivityId { get; set; } = "";
@@ -13,10 +13,8 @@ namespace API.Modals
         public decimal MaterialCostComplete { get; set; }
         public decimal LaborCostComplete { get; set; }
         public decimal NonLaborCostComplete { get; set; }
-        // public int MilestoneId { get; set; }
-        // public int FloorId { get; set; }
-        // public int WorkId { get; set; }
-        public int HeaderId { get; set; }
+        public int ImportHistoryId { get; set; }
+        public int ParentId { get; set; }
         public string? Style { get; set; } = "";
     }
 }

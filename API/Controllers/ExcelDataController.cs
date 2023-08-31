@@ -50,7 +50,7 @@ namespace API.Controllers
                     for (int row = 3; row <= rowCount; row++)  
                     {    
                         ExcelStyle rng = worksheet.Cells[row, 1].Style;
-                        string color = rng.Fill.BackgroundColor.LookupColor().Replace("#", "");
+                        string color = rng.Fill.BackgroundColor.LookupColor();
 
                         ExcelData data = new ExcelData()
                         {  
@@ -87,6 +87,11 @@ namespace API.Controllers
                             .Include(b => b.ExcelDatas)
                             .ToListAsync();
         }
-                
+
+        // [HttpGet("exportv2")]  
+        // public async Task<IActionResult> ExportV2(CancellationToken cancellationToken)  
+        // {
+            
+        // }     
     }
 }

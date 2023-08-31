@@ -1,5 +1,4 @@
 using API.Interfaces;
-using API.Modals;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -16,7 +15,7 @@ namespace API.Controllers
         }  
 
         [HttpPost]
-        public async Task<ActionResult<List<ImportHistory>>> ExcelUpload(IFormFile formFile, string? fileName, CancellationToken cancellationToken)
+        public async Task<IActionResult> ExcelUpload(IFormFile formFile, string? fileName, CancellationToken cancellationToken)
         {
             if (formFile == null || formFile.Length <= 0)  
             {  
@@ -28,7 +27,8 @@ namespace API.Controllers
                 return BadRequest("File not supported"); 
             } 
 
-            if(!await _excelService.AddToImportTable(formFile, fileName, cancellationToken)) 
+            var importId = await _excelService.AddToImportTable(formFile, fileName, cancellationToken);
+            if(importId > 0) 
             {
                 return BadRequest("Import Table failed to Update");
             }
@@ -47,10 +47,11 @@ namespace API.Controllers
                         ExcelStyle rng = worksheet.Cells[row, 1].Style;
                         string color = rng.Fill.BackgroundColor.LookupColor();
 
-                        var tablename = _excelService.SelcetTablebasedOnColor(rng, worksheet, row);
+                        await _excelService.SelectTablebasedOnColor(rng, worksheet, row, importId);
 
-                        if(tablename == "") return BadRequest("Invalid color found");
+                        // var tablename = _excelService.SelcetTablebasedOnColor(rng, worksheet, row);
 
+                        // if(await tablename == "") return BadRequest("Invalid color found");
 
                     }
                 }

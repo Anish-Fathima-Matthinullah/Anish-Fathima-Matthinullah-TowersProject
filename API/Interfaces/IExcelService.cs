@@ -6,7 +6,8 @@ namespace API.Interfaces
     public interface IExcelService
     {
        Task<bool> SaveAllAsync();
-       Task<bool> AddToImportTable(IFormFile formFile, string? fileName, CancellationToken cancellationToken);
-       string SelcetTablebasedOnColor(ExcelStyle rng, ExcelWorksheet worksheet, int row);
+       Task<int> AddToImportTable(IFormFile formFile, string? fileName, CancellationToken cancellationToken);
+    //    Task<string> SelcetTablebasedOnColor(ExcelStyle rng, ExcelWorksheet worksheet, int row);
+       Task<bool> SelectTablebasedOnColor(ExcelStyle rng, ExcelWorksheet worksheet, int row, int importId);
     }
 }

@@ -19,6 +19,9 @@ namespace API.Data
             modelBuilder.Entity<ImportHistory>()
                 .ToTable("ImportHistory", "ActivitySchema")
                 .HasKey(file => file.Id);
+                modelBuilder.Entity<Header>()
+                .ToTable("Header", "ActivitySchema")
+                .HasKey(h => h.Id);
             modelBuilder.Entity<Building>()
                 .ToTable("Building", "ActivitySchema")
                 .HasKey(b => b.Id);
@@ -47,6 +50,7 @@ namespace API.Data
 
         public virtual DbSet<ExcelData>? Buildings { get; set; }
         public virtual DbSet<ImportHistory>? ImportHistory { get; set; }
+        public virtual DbSet<Header>? Header { get; set; }
         public virtual DbSet<Building>? Building { get; set; }
         public virtual DbSet<Tower>? Tower { get; set; }
         public virtual DbSet<Milestone>? Milestone { get; set; }
