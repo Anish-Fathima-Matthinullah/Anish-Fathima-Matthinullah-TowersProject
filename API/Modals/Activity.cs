@@ -13,10 +13,7 @@ namespace API.Modals
         public decimal MaterialCostComplete { get; set; }
         public decimal LaborCostComplete { get; set; }
         public decimal NonLaborCostComplete { get; set; }
-        // public int MilestoneId { get; set; }
-        // public int FloorId { get; set; }
-        // public int WorkId { get; set; }
-        public int HeaderId { get; set; }
+        public Guid HeaderId { get; set; }
         public string? Style { get; set; } = "";
     }
 }

@@ -3,6 +3,7 @@ namespace API.Modals
     public class Header
     {
         public int Id { get; set; }
+        public Guid Identifier { get; set; }
         public string? ActivityId { get; set; } = "";
         public string? ActivityName { get; set; } = "";
         public DateTime BlProjectStart { get; set; }
@@ -14,7 +15,7 @@ namespace API.Modals
         public decimal LaborCostComplete { get; set; }
         public decimal NonLaborCostComplete { get; set; }
         public int ImportHistoryId { get; set; }
-        public int ParentId { get; set; }
+        public Guid? ParentId { get; set; }
         public string? Style { get; set; } = "";
     }
 }

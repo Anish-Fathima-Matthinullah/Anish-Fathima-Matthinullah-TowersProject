@@ -28,7 +28,7 @@ namespace API.Controllers
             } 
 
             var importId = await _excelService.AddToImportTable(formFile, fileName, cancellationToken);
-            if(importId > 0) 
+            if(!(importId > 0)) 
             {
                 return BadRequest("Import Table failed to Update");
             }
@@ -40,23 +40,21 @@ namespace API.Controllers
                 using (var package = new ExcelPackage(stream)) 
                 {
                     ExcelWorksheet worksheet = package.Workbook.Worksheets[0];  
-                    var rowCount = worksheet.Dimension.Rows;
+                    // var rowCount = worksheet.Dimension.Rows;
 
-                    for (int row = 3; row <= rowCount; row++)  
-                    {
-                        ExcelStyle rng = worksheet.Cells[row, 1].Style;
-                        string color = rng.Fill.BackgroundColor.LookupColor();
+                    // for (int row = 3; row <= rowCount; row++)  
+                    // {
+                    //     ExcelStyle rng = worksheet.Cells[row, 1].Style;
 
-                        await _excelService.SelectTablebasedOnColor(rng, worksheet, row, importId);
+                    //     await _excelService.SelectTablebasedOnColor2(rng, worksheet, row, importId);
+                    // }
 
-                        // var tablename = _excelService.SelcetTablebasedOnColor(rng, worksheet, row);
-
-                        // if(await tablename == "") return BadRequest("Invalid color found");
-
-                    }
+                    await _excelService.SelectTablebasedOnColor(worksheet, importId);
                 }
             }
             return Ok();
         }
+
+        
     }
 }

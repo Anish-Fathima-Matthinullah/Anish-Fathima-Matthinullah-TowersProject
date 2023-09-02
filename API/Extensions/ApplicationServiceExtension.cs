@@ -17,6 +17,7 @@ namespace API.Extensions
 
             services.AddCors();
             services.AddScoped<IExcelService, ExcelService>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
         }
