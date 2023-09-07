@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgb(229, 234, 238);
+}
+
+.clr-beige {
+  background-color: #fff2cc;
+}
+.clr-serenade {
+  background-color: #fbe5d6;
+}
+.clr-grey {
+  background-color: #d9d9d9;
+}
+.clr-green {
+  background-color: #7dffb8;
+}
+.clr-blue {
+  background-color: #deebf7;
+}
+.clr-lgreen {
+  background-color: #e2f0d9;
+}
+.clr-purple {
+  background-color: #dcc5ed;
+}
+
+.ngx-datatable .datatable-body-cell {
+  border: 1px solid #d9d9d9;
+  padding: 5px;
+}
+
+.ngx-datatable.material
+  .datatable-header
+  .datatable-header-cell
+  .datatable-header-cell-wrapper {
+  color: rgba(0, 32, 96, 1);
+  font-size: 18px;
+  font-weight: 600;
+  white-space: break-spaces;
+}
+
+.ngx-datatable
+  .datatable-header
+  .datatable-header-cell
+  .datatable-header-cell-template-wrap {
+  text-align: center;
+}

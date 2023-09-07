@@ -1,4 +1,4 @@
-namespace API.Modals
+namespace API.Models
 {
     public class ImportHistory
     {

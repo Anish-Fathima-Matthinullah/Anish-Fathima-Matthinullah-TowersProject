@@ -1,0 +1,7 @@
+.navbar {
+  height: 70px !important; /*i assume your navbar size 100px*/
+}
+
+.navbar-brand {
+  font-size: x-large;
+}

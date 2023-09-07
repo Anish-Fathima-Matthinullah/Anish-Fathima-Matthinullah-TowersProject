@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap");
+/* .wrapper {
+  font-family: "Poppins", sans-serif;
+} */
+
+.ngx-datatable.fixed-header
+  .datatable-header
+  .datatable-header-inner
+  .datatable-header-cell {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  color: rgba(0, 32, 96);
+}
+
+.header {
+  color: rgba(0, 32, 96);
+}
+
+.column {
+  color: rgba(0, 32, 96);
+}
+
+.show-at-top {
+  z-index: 3000 !important;
+}
+
+ng-template {
+  position: relative;
+}
+
+.table-outline {
+  /* border: 1px solid #313131; */
+  padding-top: 20px;
+}
+
+.cursor {
+  cursor: pointer;
+}

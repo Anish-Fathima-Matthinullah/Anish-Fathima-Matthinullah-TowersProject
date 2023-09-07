@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header">
+        <img
+          width="50"
+          src="https://testersdock.b-cdn.net/wp-content/uploads/2017/09/file-upload.png"
+          alt=""
+        />
+        Upload excel file here
+      </div>
+      <div class="card-body">
+        <div class="form-group mt-2 text-center d-flex">
+          <input
+            type="file"
+            class="form-control"
+            style="border-radius: 0px"
+            (change)="onSelectedFile($event)"
+          />
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="border-radius: 0"
+            (click)="uploadFile()"
+          >
+            Upload
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card h-100">
+      <div class="card-header">
+        <img
+          width="40"
+          src="https://cdn.icon-icons.com/icons2/3053/PNG/512/microsoft_excel_alt_macos_bigsur_icon_189978.png"
+          alt=""
+        />
+        Click to download file here
+      </div>
+      <div class="card-body text-center">
+        <button class="btn btn-success" (click)="getFile()">
+          <i class="fa fa-download"></i> Export file (.xlsx)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

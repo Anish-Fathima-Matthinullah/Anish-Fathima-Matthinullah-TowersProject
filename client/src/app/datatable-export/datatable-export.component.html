@@ -1,0 +1,406 @@
+<div class="wrapper">
+  <div class="container-wrapper">
+    <div class="container-fluid table-outline">
+      <h3 class="text-center header my-3">Time Schedule Follow Up</h3>
+      <div class="row">
+        <div class="col-12">
+          <ngx-datatable
+            class="material fullscreen"
+            [headerHeight]="115"
+            [footerHeight]="0"
+            [columnMode]="ColumnMode.force"
+            [rowHeight]="'auto'"
+            [rows]="rows"
+            [columns]="columns"
+            [scrollbarH]="true"
+            [rowClass]="getRowClass" 
+          >
+            <ngx-datatable-column
+              [sortable]="false"
+              name="Activity ID"
+              prop="activityId"
+              width="400"
+            >
+              <ng-template
+                let-value="value"
+                let-row="row"
+                let-rowIndex="rowIndex"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'activityId'] = true"
+                  *ngIf="!editing[rowIndex + 'activityId']"
+                  [style.font-size.px]="row.font"
+                  [style.marginLeft.px]="getTrimLength(value) * 2"
+                  [style.font-weight]="row.bold ? 'bold' : 'normal'"
+                >
+                  {{ value }}
+                </p>
+                <input
+                  class="form-control"
+                  (blur)="
+                    updateValue(
+                      $event,
+                      'activityId',
+                      rowIndex,
+                      getTrimLength(value)
+                    )
+                  "
+                  *ngIf="editing[rowIndex + 'activityId']"
+                  type="text"
+                  [value]="getTrimedValue(value)"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              class="text-center"
+              [sortable]="false"
+              name="Activity Name"
+              prop="activityName"
+              width="300"
+            >
+              <ng-template
+                let-value="value"
+                let-row="row"
+                let-rowIndex="rowIndex"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'activityName'] = true"
+                  *ngIf="!editing[rowIndex + 'activityName']"
+                  [style.font-size.px]="11"
+                >
+                  {{ value }}
+                </p>
+                <input
+                  class="form-control"
+                  (blur)="updateValue($event, 'activityName', rowIndex)"
+                  *ngIf="editing[rowIndex + 'activityName']"
+                  type="text"
+                  [value]="value"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column
+              [sortable]="false"
+              name="BL Project Start"
+              prop="blProjectStart"
+              width="170"
+            >
+              <ng-template
+                let-value="value"
+                let-row="row"
+                let-rowIndex="rowIndex"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'blProjectStart'] = true"
+                  *ngIf="!editing[rowIndex + 'blProjectStart'] && value"
+                  [style.font-size.px]="11"
+                >
+                  {{ value | date : "d-MMM-y" }}
+                </p>
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'blProjectStart'] = true"
+                  *ngIf="!editing[rowIndex + 'blProjectStart'] && !value"
+                  [style.font-size.px]="11"
+                >
+                  <i class="fa fa-calendar fa-lg"></i>
+                </p>
+                <input
+                  type="date"
+                  *ngIf="editing[rowIndex + 'blProjectStart']"
+                  (blur)="updateValue($event, 'blProjectStart', rowIndex)"
+                  [value]="value"
+                  class="form-control"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              [sortable]="false"
+              name="BL Project Finish"
+              prop="blProjectFinish"
+              width="170"
+            >
+              <ng-template
+                let-row="row"
+                let-rowIndex="rowIndex"
+                let-value="value"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'blProjectFinish'] = true"
+                  *ngIf="!editing[rowIndex + 'blProjectFinish'] && value"
+                  [style.font-size.px]="11"
+                >
+                  {{ value | date : "d-MMM-y" }}
+                </p>
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'blProjectFinish'] = true"
+                  *ngIf="!editing[rowIndex + 'blProjectFinish'] && !value"
+                  [style.font-size.px]="11"
+                >
+                  <i class="fa fa-calendar fa-lg"></i>
+                </p>
+                <input
+                  type="date"
+                  *ngIf="editing[rowIndex + 'blProjectFinish']"
+                  (blur)="updateValue($event, 'blProjectFinish', rowIndex)"
+                  class="form-control"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              [sortable]="false"
+              name="Actual Start"
+              prop="actualStart"
+              width="170"
+            >
+              <ng-template
+                let-row="row"
+                let-rowIndex="rowIndex"
+                let-value="value"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'actualStart'] = true"
+                  *ngIf="!editing[rowIndex + 'actualStart'] && value"
+                  [style.font-size.px]="11"
+                >
+                  {{ value | date : "d-MMM-y" }}
+                </p>
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'actualStart'] = true"
+                  *ngIf="!editing[rowIndex + 'actualStart'] && !value"
+                  [style.font-size.px]="11"
+                >
+                  <i class="fa fa-calendar fa-lg"></i>
+                </p>
+                <input
+                  type="date"
+                  *ngIf="editing[rowIndex + 'actualStart']"
+                  (blur)="updateValue($event, 'actualStart', rowIndex)"
+                  [value]="value"
+                  class="form-control"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              [sortable]="false"
+              name="Actual Finish"
+              prop="actualFinish"
+              width="170"
+            >
+              <ng-template
+                let-value="value"
+                let-row="row"
+                let-rowIndex="rowIndex"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'actualFinish'] = true"
+                  *ngIf="!editing[rowIndex + 'actualFinish'] && value"
+                  [style.font-size.px]="11"
+                >
+                  {{ value | date : "d-MMM-y" }}
+                </p>
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'actualFinish'] = true"
+                  *ngIf="!editing[rowIndex + 'actualFinish'] && !value"
+                  [style.font-size.px]="11"
+                >
+                  <i class="fa fa-calendar fa-lg"></i>
+                </p>
+                <input
+                  type="date"
+                  *ngIf="editing[rowIndex + 'actualFinish']"
+                  (blur)="updateValue($event, 'actualFinish', rowIndex)"
+                  [value]="value"
+                  class="form-control"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              [sortable]="false"
+              name="Activity % Complete"
+              prop="activityComplete"
+              width="150"
+            >
+              <ng-template
+                let-value="value"
+                let-row="row"
+                let-rowIndex="rowIndex"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'activityComplete'] = true"
+                  *ngIf="!editing[rowIndex + 'activityComplete'] && value"
+                  [style.font-size.px]="11"
+                >
+                  {{ value * 100 }} %
+                </p>
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'activityComplete'] = true"
+                  *ngIf="!editing[rowIndex + 'activityComplete'] && !value"
+                  [style.font-size.px]="11"
+                >
+                  <i class="fa fa-plus-square-o fa-lg"></i>
+                </p>
+                <input
+                  type="number"
+                  *ngIf="editing[rowIndex + 'activityComplete']"
+                  (blur)="updateValue($event, 'activityComplete', rowIndex)"
+                  [value]="value * 100"
+                  class="form-control"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column
+              [sortable]="false"
+              name="Material Cost % Complete"
+              prop="materialCostComplete"
+              width="150"
+            >
+              <ng-template
+                let-value="value"
+                let-row="row"
+                let-rowIndex="rowIndex"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'materialCostComplete'] = true"
+                  *ngIf="!editing[rowIndex + 'materialCostComplete'] && value"
+                  [style.font-size.px]="11"
+                >
+                  {{ value * 100 }} %
+                </p>
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'materialCostComplete'] = true"
+                  *ngIf="!editing[rowIndex + 'materialCostComplete'] && !value"
+                  [style.font-size.px]="11"
+                >
+                  <i class="fa fa-plus-square-o fa-lg"></i>
+                </p>
+                <input
+                  type="number"
+                  *ngIf="editing[rowIndex + 'materialCostComplete']"
+                  (blur)="updateValue($event, 'materialCostComplete', rowIndex)"
+                  [value]="value * 100"
+                  class="form-control"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              [sortable]="false"
+              name="Labor Cost % Complete"
+              prop="laborCostComplete"
+              width="150"
+            >
+              <ng-template
+                let-value="value"
+                let-row="row"
+                let-rowIndex="rowIndex"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'laborCostComplete'] = true"
+                  *ngIf="!editing[rowIndex + 'laborCostComplete'] && value"
+                  [style.font-size.px]="11"
+                >
+                  {{ value * 100 }} %
+                </p>
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'laborCostComplete'] = true"
+                  *ngIf="!editing[rowIndex + 'laborCostComplete'] && !value"
+                  [style.font-size.px]="11"
+                >
+                  <i class="fa fa-plus-square-o fa-lg"></i>
+                </p>
+                <input
+                  type="number"
+                  *ngIf="editing[rowIndex + 'laborCostComplete']"
+                  (blur)="updateValue($event, 'laborCostComplete', rowIndex)"
+                  [value]="value * 100"
+                  class="form-control"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              [sortable]="false"
+              name="Non Labor Cost % Complete"
+              prop="nonLaborCostComplete"
+              width="150"
+            >
+              <ng-template
+                let-value="value"
+                let-row="row"
+                let-rowIndex="rowIndex"
+                ngx-datatable-cell-template
+              >
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'nonLaborCostComplete'] = true"
+                  *ngIf="!editing[rowIndex + 'nonLaborCostComplete'] && value"
+                  [style.font-size.px]="11"
+                >
+                  {{ value * 100 }} %
+                </p>
+                <p
+                  class="mb-0 text-center cursor"
+                  title="Double click to edit"
+                  (dblclick)="editing[rowIndex + 'nonLaborCostComplete'] = true"
+                  *ngIf="!editing[rowIndex + 'nonLaborCostComplete'] && !value"
+                  [style.font-size.px]="11"
+                >
+                  <i class="fa fa-plus-square-o fa-lg"></i>
+                </p>
+                <input
+                  type="number"
+                  *ngIf="editing[rowIndex + 'nonLaborCostComplete']"
+                  (blur)="updateValue($event, 'nonLaborCostComplete', rowIndex)"
+                  [value]="value * 100"
+                  class="form-control"
+                />
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
